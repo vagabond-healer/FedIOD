@@ -1,0 +1,65 @@
+global_config:
+  seed: 5959
+  is_mp: True
+---
+
+data_config:
+  data_path: "../data/Fed/"
+  dataset_name: ["liver", "kidney", "pancreas", "BCV"]
+  batch_size: [8, 8, 1]
+  full_label_scale: 80
+  partial_label_scale: 255
+---
+
+fed_config:
+  C: 1
+  K: 3
+  R: 500
+  E: 5
+  criterion: torch.nn.CrossEntropyLoss
+  optimizer: torch.optim.SGD
+---
+
+optim_config:
+  lr: 0.01
+  momentum: 0.9
+---
+
+init_config:
+  init_type: "xavier"
+  init_gain: 1.0
+---
+
+log_config:
+  log_path: "./log/"
+  log_name:  "FL.log"
+  tb_port: 5252
+  tb_host: "0.0.0.0"
+  model_save_path: "./checkpoints/"
+  model_tmp_save_path: "./checkpoints_tmp/"
+  model_BCV_save_path: "./checkpoints_BCV/"
+---
+
+ED_config:
+  name: ED
+  in_channels: 1
+  n_classes: 2
+---
+
+ETD_config:
+  name: ETD
+  in_channels: 1
+  n_classes: 2
+  imgsize: 256
+  bilinear: True
+---
+
+ETWD_config:
+  name: ETWD
+  in_channels: 1
+  n_classes: 2
+  imgsize: 256
+  bilinear: True
+  res: True
+---
+
